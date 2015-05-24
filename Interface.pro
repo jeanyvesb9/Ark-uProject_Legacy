@@ -29,4 +29,6 @@ DISTFILES += \
     qml/StatusBarTop.qml \
     qml/PlayFunctions.js \
     qml/HomePage.qml \
-    qml/OptionMenuItem.qml
+    qml/OptionMenuItem.qml \
+    qml/ListMenu.qml \
+    qml/ScrollBar.qml

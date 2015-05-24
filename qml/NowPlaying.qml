@@ -1,4 +1,5 @@
 import QtQuick 2.4
+import QtQml 2.2
 import QtGraphicalEffects 1.0
 import "PlayFunctions.js" as PlayFunctions
 
@@ -40,14 +41,17 @@ Item {
 
     transitions: [
         Transition {
+            id: normal_TO_optionMenu
             from: "normal"; to: "optionMenu"; reversible: false
             NumberAnimation {
+                id: d
                 target: backgroundBrightness
                 properties: "brightness"
                 duration: 300
                 easing.type: Easing.OutExpo
             }
             NumberAnimation {
+                id: dd
                 target: optionMenu
                 properties: "width"
                 duration: 250
@@ -56,6 +60,7 @@ Item {
         },
 
         Transition {
+            id: optionMenu_TO_normal
             from: "optionMenu"; to: "normal"; reversible: false
             NumberAnimation {
                 target: backgroundBrightness
@@ -70,10 +75,7 @@ Item {
                 easing.type: Easing.OutExpo
             }
         }
-
     ]
-
-
 
     Keys.onReturnPressed: {
         if (state == "normal") {
@@ -404,7 +406,7 @@ Item {
                 font.pixelSize: 15
                 font.bold: true
                 color: "white"
-                text: { shuffleMode? "On" : "Off" }
+                text: { shuffleMode? "All" : "Off" }
                 smooth: true
                 opacity: .6
             }
@@ -550,6 +552,10 @@ Item {
             optionSelected: repeatMode
             displayOption: true
             displayHorizontalMenu: true
+
+            onOptionSelectedChanged: {
+                repeatMode = optionSelected
+            }
         }
 
         OptionMenuItem {
@@ -563,6 +569,10 @@ Item {
             optionSelected: shuffleMode
             displayOption: true
             displayHorizontalMenu: true
+
+            onOptionSelectedChanged: {
+                shuffleMode = optionSelected
+            }
         }
 
         OptionMenuItem {
@@ -572,6 +582,10 @@ Item {
             anchors.leftMargin: 5
             width: 446; height: 48
             mainText: "Add to Playlist"
+
+            onFocusChanged: {
+                if (focus) { addToPlaylist.focus = true; }
+            }
         }
 
         OptionMenuItem {
@@ -601,4 +615,32 @@ Item {
             mainText: "File"
         }
     }
+
+    ListMenu {
+        id: addToPlaylist
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        anchors.rightMargin: -800
+        width: 800
+        title: "Add to Playlist"
+        subtitle: "Subtitle is like this, it goes right here!"
+        options: ["Party", "Quiet", "Study", "Coding", "Movies", "Victorious", "Modern", "Old Hits", "Happy"]
+        showDescription: true
+
+        Behavior on anchors.rightMargin {
+            NumberAnimation { duration: 250; easing.type: Easing.OutExpo }
+        }
+
+        onFocusChanged: {
+            if (focus) {
+                anchors.rightMargin = 0;
+            }
+            else {
+                anchors.rightMargin = -800;
+
+            }
+        }
+    }
+
 }
