@@ -86,6 +86,7 @@ Rectangle {
     }
 
     onOptionsChanged: {
+        listModel.clear()
         for (var i in options) {
             listModel.append({"name": options[i]})
         }
@@ -116,11 +117,11 @@ Rectangle {
         anchors.leftMargin: 50
         anchors.top: parent.top
         anchors.topMargin: 110
-        width: 700; height: 225
+        width: 700; height: showDescription? 225 : 325
         clip: true
         model: listModel
         delegate: listDelegate
         highlight: Rectangle { color: "transparent"; border.color: "white"; border.width: 1 }
-        spacing: 4
+        spacing: 2
     }
 }

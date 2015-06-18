@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     copyFolders("C:/prog/QtQML/Interface_1/Interface/", sourceFolders, app.applicationDirPath());
 
     QQmlApplicationEngine engine;
-    engine.load("C:/prog/QtQML/Interface_1/build-Interface-Desktop_Qt_5_4_1_MSVC2013_32bit-Debug/debug/qml/main.qml");
+    engine.load(app.applicationDirPath().append("/qml/main.qml"));
 
     return app.exec();
 }

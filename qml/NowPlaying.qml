@@ -624,9 +624,8 @@ Item {
         anchors.rightMargin: -800
         width: 800
         title: "Add to Playlist"
-        subtitle: "Subtitle is like this, it goes right here!"
-        options: ["Party", "Quiet", "Study", "Coding", "Movies", "Victorious", "Modern", "Old Hits", "Happy"]
-        showDescription: true
+        subtitle: "Seelct a playlist and press the knob"
+        options: ["Party", "Quiet", "Study", "Coding", "Movies", "Victorious", "Modern", "Old Hits"]
 
         Behavior on anchors.rightMargin {
             NumberAnimation { duration: 250; easing.type: Easing.OutExpo }
