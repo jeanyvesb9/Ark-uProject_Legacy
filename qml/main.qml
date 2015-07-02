@@ -31,7 +31,21 @@ ApplicationWindow {
             shuffleMode: false
             play: true
             state: "normal"
-            focus: true
+            focus: false
+        }
+
+        AddToPlaylist {
+            id: addToPlaylist
+            anchors.fill: root
+            playlists: ["Party", "Quiet", "Study", "Coding", "Movies", "Victorious", "Modern", "Old Hits"]
+
+            onAdded: {
+
+            }
+
+            onCreateNewPlaylist: {
+
+            }
         }
 
         StatusBarTop {
@@ -42,10 +56,14 @@ ApplicationWindow {
             connectionType: 4
             opacity: 0
         }
-    }
 
-    MouseArea {
-        anchors.fill: root
-        onClicked: {  }
+        Keyboard {
+            id: keyboard
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset:  0
+            anchors.horizontalCenter: parent.horizontalCenter
+            inputText: ""
+            focus: true
+        }
     }
 }

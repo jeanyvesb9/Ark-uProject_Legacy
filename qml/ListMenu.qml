@@ -5,13 +5,11 @@ Rectangle {
     property string title: ""
     property string subtitle: ""
     property var options: []
-    property int selectedOption: 0
+    property alias selectedOption: optionsUI.currentIndex
     property bool showDescription: false
     property string selectedOptionDescription: ""
 
     color: "black"
-
-    Keys.onEscapePressed: { parent.focus = true }
 
     Keys.onLeftPressed: optionsUI.decrementCurrentIndex()
     Keys.onRightPressed: optionsUI.incrementCurrentIndex()

@@ -15,6 +15,12 @@ include(deployment.pri)
 DISTFILES += \
     qml/main.qml \
     qml/NowPlaying.qml \
+    qml/StatusBarTop.qml \
+    qml/HomePage.qml \
+    qml/OptionMenuItem.qml \
+    qml/ListMenu.qml \
+    qml/AddToPlaylist.qml \
+    qml/PlayFunctions.js \
     images/Album-Cover.png \
     images/Diagonal-Shine.png \
     images/Play.png \
@@ -26,9 +32,6 @@ DISTFILES += \
     images/StatusBar-Play.png \
     images/TaylorSwift_Red.png \
     images/Wifi.png \
-    qml/StatusBarTop.qml \
-    qml/PlayFunctions.js \
-    qml/HomePage.qml \
-    qml/OptionMenuItem.qml \
-    qml/ListMenu.qml \
-    qml/ScrollBar.qml
+    qml/Keyboard.qml \
+    qml/KeyboardItem.qml \
+    qml/NewPlaylist.qml

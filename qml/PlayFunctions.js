@@ -19,3 +19,11 @@ function calcSongRemString(sp, sd) {
 function calcProgressBarPerc(sp, sd) {
     return (sp / sd) * 440
 }
+
+function delay(time, cb) {
+    var timer = Qt.createQmlObject("import QtQuick 2.4; Timer {}", root);
+    timer.interval = time;
+    timer.repeat = false;
+    timer.triggered.connect(cb);
+    timer.start();
+}

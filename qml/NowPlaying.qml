@@ -7,14 +7,14 @@ Item {
     id: root
     width: 800; height: 480
 
-    property string songName: ""
-    property string songArtist: ""
-    property string songAlbum: ""
-    property string albumCover: ""
-    property int songDuration: 0
-    property int songPlayed: 0
-    property int repeatMode: 0 // 0 = No ; 1 = On ; 2 = Song
-    property bool shuffleMode: false
+    property string songName
+    property string songArtist
+    property string songAlbum
+    property string albumCover
+    property int songDuration
+    property int songPlayed
+    property int repeatMode // 0 = No ; 1 = On ; 2 = Song
+    property bool shuffleMode
     property bool play
     property int menuSelected
 
@@ -28,6 +28,7 @@ Item {
             PropertyChanges { target: progressBarSection; opacity: 1 }
             PropertyChanges { target: optionMenu; width: 0 }
             PropertyChanges { target: backgroundBrightness; brightness: -0.25 }
+            PropertyChanges { target: root; menuSelected: 0 }
         },
 
         State {
@@ -521,7 +522,6 @@ Item {
                         return -120;
                     }
                 }
-
                 anchors.horizontalCenter: optionMenuSelected.horizontalCenter
                 anchors.horizontalCenterOffset: -176.5
                 width: 1250; height: 1167
@@ -584,7 +584,7 @@ Item {
             mainText: "Add to Playlist"
 
             onFocusChanged: {
-                if (focus) { addToPlaylist.focus = true; }
+                if (focus) { addToPlaylist.state = "shown"; addToPlaylist.from = "nowPlaying"}
             }
         }
 
@@ -615,31 +615,4 @@ Item {
             mainText: "File"
         }
     }
-
-    ListMenu {
-        id: addToPlaylist
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        anchors.rightMargin: -800
-        width: 800
-        title: "Add to Playlist"
-        subtitle: "Seelct a playlist and press the knob"
-        options: ["Party", "Quiet", "Study", "Coding", "Movies", "Victorious", "Modern", "Old Hits"]
-
-        Behavior on anchors.rightMargin {
-            NumberAnimation { duration: 250; easing.type: Easing.OutExpo }
-        }
-
-        onFocusChanged: {
-            if (focus) {
-                anchors.rightMargin = 0;
-            }
-            else {
-                anchors.rightMargin = -800;
-
-            }
-        }
-    }
-
 }
