@@ -84,9 +84,9 @@ Rectangle {
     }
 
     onOptionsChanged: {
-        listModel.clear()
+        listModel.clear();
         for (var i in options) {
-            listModel.append({"name": options[i]})
+            listModel.append({"name": options[i]});
         }
     }
 

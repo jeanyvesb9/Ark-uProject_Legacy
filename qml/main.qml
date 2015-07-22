@@ -16,11 +16,15 @@ ApplicationWindow {
         HomePage {
             id: home
             anchors.fill: root
+            image: "../images/TaylorSwift_Red.png"
+            playing: true
+            focus: true
         }
 
         NowPlaying {
             id: nowPlaying
-            anchors.fill: root
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
             songName: "Begin Again"
             songArtist: "Taylor Swift ft. Ed Sheeran"
             songAlbum: "Red"
@@ -30,8 +34,7 @@ ApplicationWindow {
             repeatMode: 1
             shuffleMode: false
             play: true
-            state: "normal"
-            focus: false
+            state: "hidden"
         }
 
         AddToPlaylist {
@@ -50,20 +53,29 @@ ApplicationWindow {
 
         StatusBarTop {
             id: statusBar
-            anchors.top: nowPlaying.top
-            anchors.right: nowPlaying.right
+            anchors.top: parent.top
+            anchors.horizontalCenter: parent.horizontalCenter
             isPlaying: true
             connectionType: 4
-            opacity: 0
+            opacity: 1
         }
 
         Keyboard {
             id: keyboard
             anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset:  0
+            anchors.verticalCenterOffset: focus? 0 : 350
             anchors.horizontalCenter: parent.horizontalCenter
-            inputText: ""
-            focus: true
+
+            Behavior on anchors.verticalCenterOffset {
+                NumberAnimation {
+                    duration: 250
+                    easing.type: Easing.OutExpo
+                }
+            }
+
+            onCanceled: {
+                focus = false
+            }
         }
     }
 }

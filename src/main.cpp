@@ -5,7 +5,7 @@
 
 void copyFolders(const QString sourceDirec, const QStringList sourceFolders, const QString destBaseFolder)
 {
-    foreach(QString sourceFolder, sourceFolders)
+    for(QString sourceFolder : sourceFolders)
     {
         sourceFolder = sourceDirec + sourceFolder + "/";
         QDir sourceDir(sourceFolder);

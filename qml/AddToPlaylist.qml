@@ -9,6 +9,17 @@ Item {
     signal added(int playlist)
     signal createNewPlaylist()
 
+    function goBack( done ) {
+        switch (from) {
+        case "nowPlaying":
+            nowPlaying.focus = true;
+            if (done) {
+                nowPlaying.state = "normal";
+            }
+            break;
+        }
+    }
+
     states: [
         State {
             name: "hidden"
@@ -39,16 +50,12 @@ Item {
 
         Keys.onEscapePressed: {
             root.state = "hidden"
+            goBack(false)
         }
 
         Keys.onReturnPressed: {
             root.state = "hidden";
-            switch (from) {
-            case "nowPlaying":
-                nowPlaying.focus = true;
-                nowPlaying.state = "normal";
-                break;
-            }
+            goBack(true)
             if (selectedOption + 1 < options.length) {
                 root.added(selectedOption);
             }
