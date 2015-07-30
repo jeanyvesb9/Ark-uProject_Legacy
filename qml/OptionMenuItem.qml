@@ -154,7 +154,7 @@ Item {
             font.pixelSize: 24
             font.bold: false
             color: "white"
-            smooth: true
+
         }
 
         Text {
@@ -168,7 +168,7 @@ Item {
             font.bold: true
             color: "White"
             text: options.length? options[optionSelected] : ""
-            smooth: true
+
         }
 
         Image {
@@ -177,7 +177,7 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: 21
             source: "../images/Arrow.png"
-            smooth: true
+
         }
 
         Item {
@@ -230,7 +230,7 @@ Item {
                             font.bold: true
                             text: modelData
                             color: "White"
-                            smooth: true
+
                         }
                     }
 

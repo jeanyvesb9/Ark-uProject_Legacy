@@ -28,21 +28,21 @@ typedef struct {
 	/**
 	 * The type of data associated with the content code.
 	 */
-	DMAP_TYPE type;
+    DMAP_TYPE type;
 
-	/**
-	 * For listings, the type of their listing item children.
-	 *
-	 * Listing items (mlit) can be of any type, and as with other content codes
-	 * their type information is not encoded in the message. Parsers must
-	 * determine the type of the listing items based on their parent context.
-	 */
-	DMAP_TYPE list_item_type;
+    /**
+     * For listings, the type of their listing item children.
+     *
+     * Listing items (mlit) can be of any type, and as with other content codes
+     * their type information is not encoded in the message. Parsers must
+     * determine the type of the listing items based on their parent context.
+     */
+    DMAP_TYPE list_item_type;
 
-	/**
-	 * A human-readable name for the content code.
-	 */
-	const char *name;
+    /**
+     * A human-readable name for the content code.
+     */
+    const char *name;
 } dmap_field;
 
 static const dmap_field dmap_fields[] = {
@@ -313,21 +313,21 @@ int dmap_version(void) {
 
 const char *dmap_version_string(void) {
 	return DMAP_STRINGIFY(DMAP_VERSION_MAJOR) "."
-	       DMAP_STRINGIFY(DMAP_VERSION_MINOR) "."
-	       DMAP_STRINGIFY(DMAP_VERSION_PATCH);
-}
+           DMAP_STRINGIFY(DMAP_VERSION_MINOR) "."
+            DMAP_STRINGIFY(DMAP_VERSION_PATCH);
+ }
 
-static int dmap_field_sort(const dmap_field *a, const dmap_field *b) {
-	return memcmp(a->code, b->code, 4);
-}
+ static int dmap_field_sort(const dmap_field *a, const dmap_field *b) {
+     return memcmp(a->code, b->code, 4);
+ }
 
-static const dmap_field *dmap_field_from_code(const char *code) {
-	dmap_field key;
-	key.code = code;
-	return bsearch(&key, dmap_fields, dmap_field_count, sizeof(dmap_field), (sort_func)dmap_field_sort);
-}
+ static const dmap_field *dmap_field_from_code(const char *code) {
+     dmap_field key;
+     key.code = code;
+     return bsearch(&key, dmap_fields, dmap_field_count, sizeof(dmap_field), (sort_func)dmap_field_sort);
+ }
 
-const char *dmap_name_from_code(const char *code) {
+ const char *dmap_name_from_code(const char *code) {
 	const dmap_field *field;
 	if (!code)
 		return NULL;
@@ -384,8 +384,8 @@ static int dmap_parse_internal(const dmap_settings *settings, const char *buf, s
 
 	while (end - p >= 8) {
 		memcpy(code, p, 4);
-		field = dmap_field_from_code(code);
-		p += 4;
+        field = dmap_field_from_code(code);
+        p += 4;
 
 		field_len = dmap_read_u32(p);
 		p += 4;
@@ -418,7 +418,7 @@ static int dmap_parse_internal(const dmap_settings *settings, const char *buf, s
 					if (dmap_read_u32(p + 4) < field_len)
 						field_type = DMAP_DICT;
 				}
-			}
+            }
 
 			if (field_type == DMAP_UNKNOWN) {
 				size_t i;

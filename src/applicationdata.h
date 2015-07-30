@@ -2,6 +2,7 @@
 #define APPLICATIONDATA_H
 
 #include <QObject>
+#include "src/database/library.h"
 
 class ApplicationData : public QObject
 {

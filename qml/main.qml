@@ -16,7 +16,7 @@ ApplicationWindow {
         HomePage {
             id: home
             anchors.fill: root
-            image: "../images/TaylorSwift_Red.png"
+            image: "../images/Lorde.jpg"
             playing: true
             focus: true
         }
@@ -25,11 +25,11 @@ ApplicationWindow {
             id: nowPlaying
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            songName: "Begin Again"
-            songArtist: "Taylor Swift ft. Ed Sheeran"
-            songAlbum: "Red"
-            albumCover: "../images/TaylorSwift_Red.png"
-            songDuration: 229
+            songName: "Royals"
+            songArtist: "Lorde"
+            songAlbum: "Pure Heroine"
+            albumCover: "../images/Lorde.jpg"
+            songDuration: 190
             songPlayed: 10
             repeatMode: 1
             shuffleMode: false

@@ -201,11 +201,12 @@ Rectangle {
 
                 Image {
                     id:keyShiftImg
-                    width: 20; height: 20
+                    sourceSize.width: 20
+                    sourceSize.height: 20
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
                     source: _isUpperCase? "../images/ShiftOnArrow.png" : "../images/ShiftArrow.png"
-                    smooth: true
+
                     opacity: .9
                 }
 
@@ -222,24 +223,24 @@ Rectangle {
 
                 Image {
                     id: keyCursorLeft
-                    width: 15; height: 30
+                    sourceSize.width: 15
+                    sourceSize.height: 30
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.horizontalCenterOffset: -20
                     source: "../images/ShiftOnArrow.png"
-                    smooth: true
                     rotation: -90
                     opacity: .9
                 }
 
                 Image {
                     id: keyCursorRight
-                    width: 15; height: 30
+                    sourceSize.width: 15
+                    sourceSize.height: 30
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.horizontalCenterOffset: 20
                     source: "../images/ShiftOnArrow.png"
-                    smooth: true
                     rotation: 90
                     opacity: .9
                 }

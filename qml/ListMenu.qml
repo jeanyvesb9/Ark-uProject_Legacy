@@ -25,7 +25,7 @@ Rectangle {
         font.bold: true
         color: "white"
         text: title
-        smooth: true
+
         opacity: .8
     }
 
@@ -40,7 +40,7 @@ Rectangle {
         font.bold: true
         color: "white"
         text: subtitle
-        smooth: true
+
         opacity: .5
     }
 
@@ -64,7 +64,7 @@ Rectangle {
             font.pixelSize: 20
             color: "white"
             text: selectedOptionDescription
-            smooth: true
+
         }
     }
 
@@ -104,7 +104,7 @@ Rectangle {
                 font.bold: true
                 color: "white"
                 text: name
-                smooth: true
+
             }
         }
     }

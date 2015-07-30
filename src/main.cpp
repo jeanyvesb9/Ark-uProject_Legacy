@@ -2,6 +2,8 @@
 #include <QDir>
 #include <QDebug>
 #include <QQmlApplicationEngine>
+#include "dmap/dmapclient.h"
+#include "src/global.h"
 
 void copyFolders(const QString sourceDirec, const QStringList sourceFolders, const QString destBaseFolder)
 {
@@ -43,6 +45,14 @@ int main(int argc, char *argv[])
 
     QStringList sourceFolders = {"qml", "images"};
     copyFolders("C:/prog/QtQML/Interface_1/Interface/", sourceFolders, app.applicationDirPath());
+
+    libraryName = "PROJECTu";
+
+    QString host = "192.168.1.101";
+    quint16 port = 3690;
+    DmapClient *client = new DmapClient(host, port);
+    client->setAuthenticationHeader("PROJECTu", "pass");
+    client->login();
 
     QQmlApplicationEngine engine;
     engine.load(app.applicationDirPath().append("/qml/main.qml"));

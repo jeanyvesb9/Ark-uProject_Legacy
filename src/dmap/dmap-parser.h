@@ -41,13 +41,13 @@ typedef struct {
 	dmap_int32_cb  on_int32;
 	dmap_int64_cb  on_int64;
 	dmap_uint32_cb on_uint32;
-	dmap_uint64_cb on_uint64;
-	dmap_uint32_cb on_date;
-	dmap_data_cb   on_string;
-	dmap_data_cb   on_data;
+    dmap_uint64_cb on_uint64;
+    dmap_uint32_cb on_date;
+    dmap_data_cb   on_string;
+    dmap_data_cb   on_data;
 
-	/** A context pointer passed to each callback function. */
-	void *ctx;
+    /** A context pointer passed to each callback function. */
+    void *ctx;
 } dmap_settings;
 
 /**

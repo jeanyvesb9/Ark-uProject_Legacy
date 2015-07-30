@@ -19,8 +19,6 @@ Item {
     property int menuSelected
 
     property string from
-    signal goBack()
-    signal goHome()
 
     states: [
         State {
@@ -128,6 +126,7 @@ Item {
             case "home":
                 home.focus = true;
             }
+            state = "hidden";
         }
         else if (state == "optionMenu") {
             state = "normal";
@@ -201,7 +200,7 @@ Item {
                 id: backgroundImage
                 anchors.fill: background
                 source: albumCover
-                smooth: true
+
             }
 
             GaussianBlur {
@@ -211,7 +210,7 @@ Item {
                 radius: 35
                 deviation: 17
                 samples: 33
-                smooth: true
+
             }
 
             BrightnessContrast {
@@ -219,7 +218,7 @@ Item {
                 anchors.fill: background
                 source: backgroundBlur
                 brightness: -0.25
-                smooth: true
+
             }
         }
 
@@ -235,7 +234,6 @@ Item {
                 anchors.horizontalCenter: artwork.horizontalCenter
                 anchors.verticalCenter: artwork.verticalCenter
                 source: "../images/Album-Cover.png"
-                smooth: true
             }
 
             Image {
@@ -249,7 +247,7 @@ Item {
                 id: artworkDiagonalShine
                 anchors.fill: artwork
                 source: "../images/Diagonal-Shine.png"
-                smooth: true
+
             }
         }
 
@@ -272,7 +270,7 @@ Item {
                 color: "white"
                 opacity: 0.8
                 text: songName
-                smooth: true
+
             }
 
             Text {
@@ -287,7 +285,7 @@ Item {
                 color: "white"
                 opacity: 0.5
                 text: songArtist
-                smooth: true
+
             }
 
             Text {
@@ -302,7 +300,7 @@ Item {
                 color: "white"
                 opacity: 0.5
                 text: songAlbum
-                smooth: true
+
             }
         }
 
@@ -321,7 +319,7 @@ Item {
                 anchors.leftMargin: 3
                 source: "../images/Play.png"
                 visible: play
-                smooth: true
+
             }
 
             Image {
@@ -331,7 +329,7 @@ Item {
                 anchors.leftMargin: 3
                 source: "../images/Pause.png"
                 visible: !play
-                smooth: true
+
             }
 
             Text {
@@ -345,7 +343,7 @@ Item {
                 font.bold: true
                 color: "white"
                 text: PlayFunctions.calcSongPlayedString(songPlayed)
-                smooth: true
+
             }
 
             Text {
@@ -358,7 +356,7 @@ Item {
                 font.bold: true
                 color: "white"
                 text: PlayFunctions.calcSongRemString(songPlayed, songDuration)
-                smooth: true
+
             }
 
             Rectangle {
@@ -367,7 +365,7 @@ Item {
                 anchors.verticalCenter: progressBarSection.verticalCenter
                 anchors.verticalCenterOffset: -5.5
                 anchors.horizontalCenter: progressBarSection.horizontalCenter
-                smooth: true
+
                 clip: true
 
                 Image {
@@ -378,7 +376,7 @@ Item {
                     anchors.horizontalCenterOffset: -160
                     width: 1250; height: 1167
                     source: albumCover
-                    smooth: true
+
                 }
 
                 GaussianBlur {
@@ -388,7 +386,7 @@ Item {
                     radius: 45
                     deviation: 20
                     samples: 33
-                    smooth: true
+
                 }
 
                 Image {
@@ -398,7 +396,7 @@ Item {
                     anchors.left: progressBar.left
                     width: PlayFunctions.calcProgressBarPerc(songPlayed, songDuration)
                     source: "../images/Progress.png"
-                    smooth: true
+
                 }
             }
 
@@ -451,7 +449,7 @@ Item {
                     font.bold: true
                     color: "white"
                     text: { shuffleMode? "All" : "Off" }
-                    smooth: true
+
                     opacity: .6
                 }
 
@@ -485,7 +483,7 @@ Item {
                             return "Song";
                         }
                     }
-                    smooth: true
+
                     opacity: .6
                 }
             }
@@ -502,7 +500,7 @@ Item {
                 id: optionMenuBackground
                 anchors.fill: optionMenu
                 color: "Black"
-                smooth: true
+
                 opacity: .72
             }
 
@@ -512,7 +510,7 @@ Item {
                 anchors.top: optionMenuBackground.top
                 anchors.bottom: optionMenuBackground.bottom
                 width: 5
-                smooth: true
+
                 clip: true
 
                 Image {
@@ -522,7 +520,7 @@ Item {
                     anchors.horizontalCenterOffset: 48.5
                     width: 1250; height: 1167
                     source: albumCover
-                    smooth: true
+
                 }
 
                 GaussianBlur {
@@ -532,7 +530,7 @@ Item {
                     radius: 45
                     deviation: 20
                     samples: 33
-                    smooth: true
+
                 }
             }
 
@@ -569,7 +567,7 @@ Item {
                     anchors.horizontalCenterOffset: -176.5
                     width: 1250; height: 1167
                     source: albumCover
-                    smooth: true
+
                 }
 
                 GaussianBlur {
@@ -579,7 +577,7 @@ Item {
                     radius: 45
                     deviation: 20
                     samples: 33
-                    smooth: true
+
                 }
             }
 

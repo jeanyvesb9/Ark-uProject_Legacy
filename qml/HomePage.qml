@@ -82,7 +82,7 @@ Item {
             radius: 4
             deviation: 4
             samples: 16
-            smooth: true
+
         }
 
         Rectangle {
@@ -132,7 +132,7 @@ Item {
                 font.bold: true
                 color: "white"
                 text: name
-                smooth: true
+
             }
         }
     }

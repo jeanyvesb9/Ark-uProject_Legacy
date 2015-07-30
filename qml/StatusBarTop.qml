@@ -6,6 +6,7 @@ Item {
     property alias isPlaying: play.visible
     property int connectionType: 0 // 0 = None ; 1 = Ethernet ; 2 = Wifi-None ; 3 = Wifi-Low ; 4 = Wifi-Medium ; 5 = Wifi-High
 
+
     onConnectionTypeChanged: {
         switch(connectionType) {
         case 0:
