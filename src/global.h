@@ -7,7 +7,7 @@ enum class Genre {
     Holiday, Jazz, NewAge, Pop, Religious, Rock, Soundtrack, Unclassifiable, World
 };
 
-static QString libraryName;
+static QString libraryName = "PROJECTu";
 
 #endif // GLOBAL
 

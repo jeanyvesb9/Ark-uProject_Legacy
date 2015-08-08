@@ -17,38 +17,50 @@ public:
     explicit Library(QObject *parent = 0);
     ~Library();
 
-    void setSongList(QHash<qint32, QSharedPointer<Song>> songList);
-    const QHash<qint32, QSharedPointer<Song>> *getSongList() const { return &songList; }
+    void setSongList(QHash<quint32, QSharedPointer<Song>> songList, QList<quint32> orderedList);
+    const QHash<quint32, QSharedPointer<Song>> *getSongList() const { return &songList; }
+    const QList<quint32> *getOrderedSongList() const { return &orderedSongList; }
 
-    void setAlbumList(QHash<qint32, QSharedPointer<Album>> albumList);
-    const QHash<qint32, QSharedPointer<Album>> *getAlbumList() const { return &albumList; }
+    void setAlbumList(QHash<quint64, QSharedPointer<Album>> albumList, QList<quint64> orderedList);
+    const QHash<quint64, QSharedPointer<Album>> *getAlbumList() const { return &albumList; }
+    const QList<quint64> *getOrderedAlbumList() const { return &orderedAlbumList; }
 
-    void setPlaylistList(QHash<qint32, QSharedPointer<Playlist>> playlistList);
-    const QHash<qint32, QSharedPointer<Playlist>> *getPlaylistList() const { return &playlistList; }
+    void setPlaylistList(QHash<quint32, QSharedPointer<Playlist>> playlistList, QList<quint32> orderedList);
+    const QHash<quint32, QSharedPointer<Playlist>> *getPlaylistList() const { return &playlistList; }
+    const QList<quint32> *getOrderedPlaylistList() const { return &orderedPlaylistList; }
 
-    void setArtistList(QHash<qint32, QSharedPointer<Artist>> artistList);
-    const QHash<qint32, QSharedPointer<Artist>> *getArtistList() const { return &artistList; }
+    void setArtistList(QHash<quint64, QSharedPointer<Artist>> artistList, QList<quint64> orderedList);
+    const QHash<quint64, QSharedPointer<Artist>> *getArtistList() const { return &artistList; }
+    const QList<quint64> *getOrderedArtistList() const { return &orderedArtistList; }
 
-    void addSong(QSharedPointer<Song> song);
-    void addAlbum(QSharedPointer<Album> album);
-    void addPlaylist(QSharedPointer<Playlist> playlist);
-    void addArtist(QSharedPointer<Artist> artist);
+    void addSong(QSharedPointer<Song> song, quint32 place);
+    void addAlbum(QSharedPointer<Album> album, quint32 place);
+    void addPlaylist(QSharedPointer<Playlist> playlist, quint32 place);
+    void addArtist(QSharedPointer<Artist> artist, quint32 place);
 
-    void removeSong(qint32 id);
-    void removeAlbum(qint32 id);
-    void removePlaylist(qint32 id);
-    void removeArtist(qint32 id);
+    void removeSong(quint32 id, qint32 place = -1);
+    void removeAlbum(quint64 id, qint32 place = -1);
+    void removePlaylist(quint32 id, qint32 place = -1);
+    void removeArtist(quint64 id, qint32 place = -1);
 
-    QWeakPointer<Song> getSong(qint32 songId) const { return songList.value(songId).toWeakRef(); }
-    QWeakPointer<Album> getAlbum(qint32 albumId) const { return albumList.value(albumId).toWeakRef(); }
-    QWeakPointer<Playlist> getPlaylist(qint32 playlistId) const { return playlistList.value(playlistId).toWeakRef(); }
-    QWeakPointer<Artist> getArtist(qint32 artistId) const { return artistList.value(artistId).toWeakRef(); }
+    QWeakPointer<Song> getSong(quint32 songId) { return songList.value(songId).toWeakRef(); }
+    quint32 getSongAtPlace(quint32 place) const { return orderedSongList.at(place); }
+    QWeakPointer<Album> getAlbum(quint64 albumId) { return albumList.value(albumId).toWeakRef(); }
+    quint32 getAlbumAtPlace(quint32 place) const { return orderedAlbumList.at(place); }
+    QWeakPointer<Playlist> getPlaylist(quint32 playlistId) { return playlistList.value(playlistId).toWeakRef(); }
+    quint32 getPlaylistAtPlace(quint32 place) const { return orderedPlaylistList.at(place); }
+    QWeakPointer<Artist> getArtist(quint64 artistId) { return artistList.value(artistId).toWeakRef(); }
+    quint32 getArtistAtPlace(quint32 place) const { return orderedArtistList.at(place); }
 
 private:
-    QHash<qint32, QSharedPointer<Song>> songList;
-    QHash<qint32, QSharedPointer<Album>> albumList;
-    QHash<qint32, QSharedPointer<Playlist>> playlistList;
-    QHash<qint32, QSharedPointer<Artist>> artistList;
+    QHash<quint32, QSharedPointer<Song>> songList;
+    QList<quint32> orderedSongList;
+    QHash<quint64, QSharedPointer<Album>> albumList;
+    QList<quint64> orderedAlbumList;
+    QHash<quint32, QSharedPointer<Playlist>> playlistList;
+    QList<quint32> orderedPlaylistList;
+    QHash<quint64, QSharedPointer<Artist>> artistList;
+    QList<quint64> orderedArtistList;
 
 signals:
     void updated();

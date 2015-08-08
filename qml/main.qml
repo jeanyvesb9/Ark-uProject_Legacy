@@ -37,6 +37,13 @@ ApplicationWindow {
             state: "hidden"
         }
 
+        SongPage {
+            id: songPage
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            state: "hidden";
+        }
+
         AddToPlaylist {
             id: addToPlaylist
             anchors.fill: root

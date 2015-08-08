@@ -1,7 +1,7 @@
 #include "src/database/album.h"
 
-Album::Album(qint32 id, QString name, QString albumArtist, QObject *parent)
-    :QObject {parent}, id{id}, name{name.toUtf8()}, albumArtist{albumArtist.toUtf8()}
+Album::Album(quint64 id, quint32 groupId, QByteArray name, quint64 albumArtist, QObject *parent)
+    :QObject {parent}, id{id}, groupId{groupId}, name{name}, albumArtist{albumArtist}, albumLenght{0}
 {
 
 }
@@ -11,9 +11,14 @@ Album::~Album()
     emit albumDeleted(this);
 }
 
-void Album::setId(qint32 id)
+void Album::setId(quint64 id)
 {
     this->id = id;
+}
+
+void Album::setGroupId(quint32 groupId)
+{
+    this->groupId = groupId;
 }
 
 void Album::setName(QString name)
@@ -21,37 +26,48 @@ void Album::setName(QString name)
     this->name = name.toUtf8();
 }
 
-void Album::setAlbumArtist(QString albumArtist)
+void Album::setAlbumArtist(quint64 albumArtist)
 {
-    this->albumArtist = albumArtist.toUtf8();
+    this->albumArtist = albumArtist;
 }
 
-void Album::setArtwork(QImage image)
-{
-    this->artwork.reset(&image);
-}
-
-void Album::removeArtwork()
-{
-    this->artwork.reset();
-}
-
-void Album::setSongList(QList<qint32> songs)
+void Album::setSongList(QMap<quint16, QMap<quint16, quint32> > songs)
 {
     this->songList = songs;
 }
 
-void Album::addSong(qint16 possition, qint32 songNumber)
+quint16 Album::getSongListLenght() const
 {
-    this->songList.insert(possition, songNumber);
+    quint16 len = 0;
+    for(auto cd : songList)
+    {
+        for(auto song : cd)
+        {
+            Q_UNUSED(song);
+            len++;
+        }
+    }
+    return len;
 }
 
-void Album::removeSong(qint16 possition)
+void Album::addSong(quint16 disc, quint16 possition, quint32 songNumber)
 {
-    this->songList.removeAt(possition);
+    this->songList[disc][possition] = songNumber;
 }
 
-void Album::moveSong(qint16 from, qint16 to)
+void Album::removeSong(quint16 disc, quint16 possition)
 {
-    this->songList.move(from, to);
+    this->songList[disc].remove(possition);
+}
+
+void Album::moveSong(quint16 discFrom, quint16 from, quint16 discTo, quint16 to)
+{
+    quint32 temp = songList.value(discFrom).value(from);
+    songList[discFrom].remove(from);
+    songList[discTo][to] = temp;
+}
+
+void Album::setAlbumLenght(quint32 lenght)
+{
+    this->albumLenght = lenght;
 }

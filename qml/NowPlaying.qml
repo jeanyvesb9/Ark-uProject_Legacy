@@ -258,7 +258,6 @@ Item {
             anchors.leftMargin: 340
             anchors.top: parent.top
             anchors.topMargin: 115
-
             Text {
                 id: uiSongName
                 anchors.top: songText.top
@@ -270,7 +269,6 @@ Item {
                 color: "white"
                 opacity: 0.8
                 text: songName
-
             }
 
             Text {
@@ -285,7 +283,6 @@ Item {
                 color: "white"
                 opacity: 0.5
                 text: songArtist
-
             }
 
             Text {
@@ -300,7 +297,6 @@ Item {
                 color: "white"
                 opacity: 0.5
                 text: songAlbum
-
             }
         }
 

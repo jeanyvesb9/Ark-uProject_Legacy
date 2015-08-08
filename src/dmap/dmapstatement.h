@@ -2,6 +2,7 @@
 #define DMAPSTATEMENT_H
 
 #include <QtGlobal>
+#include <QtDebug>
 #include <QList>
 #include <QByteArray>
 #include <QString>
@@ -20,7 +21,7 @@ public:
     DmapStatement *findValue(QString &name, QString &inside, QString &insideRefType,
                              QByteArray &insideRefValue) const;
 
-
+    DmapStatement *findUniqueValue(QString &name, QString &inside) const;
 
     template <typename t> static t byteToInt(QByteArray &array)
     {
@@ -43,7 +44,7 @@ public:
 
     byte *getData() const;
 
-    QList<DmapStatement> &getDictList();
+    const QList<DmapStatement> &getDictList() const;
 
 private:
     char *name;
@@ -54,8 +55,9 @@ private:
     QList<DmapStatement> dictList;
 
     bool isList(char *name) const;
-    bool _findValue(DmapStatement *res, const char *name, const char *inside,
+    bool _findValue(DmapStatement* &res, const char *name, const char *inside,
                     const char* insideRefType, QByteArray *insideRefValue) const;
+    bool _findUniqueValue(DmapStatement* &res, const char *name, const char *inside) const;
 };
 
 #endif // DMAPSTATEMENT_H

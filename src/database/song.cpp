@@ -1,19 +1,26 @@
 #include "src/database/song.h"
 
-Song::Song(qint32 id, QString name, qint32 time, qint32 artist, qint16 trackNumber, qint16 discNumber,
-           qint32 album, QObject *parent)
-    : QObject(parent), id{id}, name{name.toUtf8()}, time{time}, artist{artist}, trackNumber{trackNumber},
+Song::Song(quint32 id, QByteArray name, quint32 time, quint16 trackNumber, quint16 discNumber,
+           quint64 album, bool diffArtist, QByteArray artist, QObject *parent)
+    : QObject(parent), id{id}, name{name}, time{time}, trackNumber{trackNumber},
       discNumber{discNumber}, album{album}
 {
-
+    if(diffArtist)
+    {
+        this->artistName = new QByteArray(artist);
+    }
 }
 
 Song::~Song()
 {
+    if(artistName)
+    {
+        delete artistName;
+    }
     emit songDeleted(this);
 }
 
-void Song::setId(qint32 id)
+void Song::setId(quint32 id)
 {
     this->id = id;
 }
@@ -23,27 +30,45 @@ void Song::setName(QString name)
     this->name = name.toUtf8();
 }
 
-void Song::setAlbum(qint32 album)
+void Song::setAlbum(quint64 album)
 {
     this->album = album;
 }
 
-void Song::setTime(qint32 time)
+void Song::setTime(quint32 time)
 {
     this->time = time;
 }
 
-void Song::setTrackNumber(qint16 trackNumber)
+void Song::setTrackNumber(quint16 trackNumber)
 {
     this->trackNumber = trackNumber;
 }
 
-void Song::setDiscNumber(qint16 discNumber)
+void Song::setDiscNumber(quint16 discNumber)
 {
     this->discNumber = discNumber;
 }
 
-void Song::setArtist(qint32 artist)
+void Song::setDefaultArtist()
 {
-    this->artist = artist;
+    delete this->artistName;
+}
+
+QString Song::getArtist() const
+{
+    if(this->artistName)
+    {
+        return QString::fromUtf8(*(this->artistName));
+    }
+    return QString("NULL");
+}
+
+void Song::setArtist(QString artist)
+{
+    if(this->artistName)
+    {
+        this->artistName->clear();
+        *(this->artistName) = artist.toUtf8();
+    }
 }

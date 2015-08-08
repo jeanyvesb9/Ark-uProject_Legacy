@@ -7,12 +7,11 @@ SOURCES += src/database/album.cpp \
     src/database/playlist.cpp \
     src/database/song.cpp \
     src/dmap/dmapclient.cpp \
-    src/applicationdata.cpp \
     src/main.cpp \
-    src/dmap/dmap-parser.c \
     src/database/artist.cpp \
-    src/songview.cpp \
-    src/dmap/dmapstatement.cpp
+    src/dmap/dmapstatement.cpp \
+    src/applicationlogic.cpp \
+    src/songviewmodel.cpp
 
 CONFIG += c++14
 
@@ -97,16 +96,16 @@ DISTFILES += \
     workingImages/PSD/Shuffle.psd \
     workingImages/PSD/StatusBar-Ethernet.psd \
     workingImages/PSD/StatusBar-Play.psd \
-    workingImages/PSD/StatusBar-Wifi.psd
+    workingImages/PSD/StatusBar-Wifi.psd \
+    qml/SongPage.qml
 
 HEADERS += src/database/album.h \
     src/database/library.h \
     src/database/playlist.h \
     src/database/song.h \
-    src/dmap/dmap-parser.h \
     src/dmap/dmapclient.h \
-    src/applicationdata.h \
     src/global.h \
     src/database/artist.h \
-    src/songview.h \
-    src/dmap/dmapstatement.h
+    src/dmap/dmapstatement.h \
+    src/applicationlogic.h \
+    src/songviewmodel.h

@@ -12,7 +12,7 @@ class Playlist : public QObject
 {
     Q_OBJECT
 public:
-    explicit Playlist(qint32 id, QString name, QObject *parent = 0);
+    Playlist(qint32 id, QString name, QObject *parent = 0);
     ~Playlist();
 
     void setId(qint32 id);
